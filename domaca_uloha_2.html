@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Prihláška na pracovné miesto</title>
+<style>
+
+  body {
+    background: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+  
+  .form-box {
+    width: 820px;
+    margin: 10px auto;
+    border: 2px solid #666;
+    background: #d0d0d0; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  table.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #d0d0d0;
+  }
+
+  table.form-table td, table.form-table th {
+    border: 2px solid #8a8a8a;
+    padding: 8px;
+    vertical-align: middle;
+    background: #d0d0d0; 
+  }
+
+
+  table.form-table td.label {
+    width: 200px;
+    font-weight: bold;
+    background: #c0c0c0;
+  }
+
+  .field-wrap {
+    background: #ffffff;
+    padding: 6px;
+    border: 1px solid #bdbdbd;
+    border-radius: 2px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 110px;
+    resize: vertical;
+  }
+
+ 
+  .inline-list input { margin-right:6px; }
+  .inline-list label { margin-right:12px; font-weight: normal; }
+
+
+  .form-title {
+    background: #9b9b9b;
+    color: #111;
+    padding: 10px 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #8a8a8a;
+  }
+
+ 
+  .buttons {
+    display:flex;
+    justify-content: space-between;
+    padding: 12px;
+    gap: 10px;
+  }
+  .buttons .left,
+  .buttons .right { flex:1; }
+
+  input[type="reset"],
+  input[type="submit"] {
+    width: 140px;
+    padding: 8px;
+    border: 2px solid #777;
+    background: #e6e6e6;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  input[type="submit"] {
+    background: linear-gradient(#f7f7f7,#e0e0e0);
+  }
+
+ 
+  select.optgroup-select { width: 100%; }
+
+
+  .footer-note {
+    text-align: right;
+    font-size: 12px;
+    color: #333;
+    padding: 6px 12px;
+  }
+
+ 
+  @media (max-width: 900px) {
+    .form-box { width: 98%; }
+    table.form-table td.label { width: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="form-box">
+  <div class="form-title">Prihláška na pracovné miesto v leteckom podniku</div>
+
+  <form action="#" method="post" enctype="multipart/form-data">
+    <table class="form-table">
+      <tr>
+        <td class="label">Meno</td>
+        <td>
+          <div class="field-wrap">
+            <input type="text" name="meno" placeholder="Jozef Mrkva" required>
+          </div>
+        </td>
+        <td class="label">Heslo</td>
+        <td>
+          <div class="field-wrap">
+            <input type="password" name="heslo" value="" required>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Odbor / Pozícia</td>
+        <td>
+          <div class="field-wrap inline-list">
+            <label><input type="radio" name="odbor" value="TIS"> TIS</label>
+            <label><input type="radio" name="odbor" value="ELE"> ELE</label>
+            <label><input type="radio" name="odbor" value="INE"> INÉ</label>
+          </div>
+        </td>
+
+        <td class="label">Trieda / Úroveň</td>
+        <td>
+          <div class="field-wrap">
+            <select name="trieda" class="optgroup-select">
+              <optgroup label="Prvý ročník">
+                <option>1. A</option>
+                <option>1. B</option>
+                <option>1. C</option>
+                <option>1. D</option>
+              </optgroup>
+              <optgroup label="Druhý ročník">
+                <option>2. A</option>
+                <option>2. B</option>
+                <option>2. C</option>
+                <option>2. D</option>
+              </optgroup>
+            </select>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Voliteľné predmety</td>
+        <td colspan="3">
+          <div class="field-wrap inline-list">
+            <label><input type="checkbox" name="predmet_INS" value="INS"> INS</label>
+            <label><input type="checkbox" name="predmet_CVM" value="CVM"> CVM</label>
+            <label><input type="checkbox" name="predmet_CUJ" value="CUJ"> CUJ</label>
+            <label><input type="checkbox" name="predmet_PRA" value="PRA"> PRA</label>
+            <label><input type="checkbox" name="predmet_NAV" value="NAV"> NAV</label>
+            <label><input type="checkbox" name="predmet_AVG" value="AVG"> AVG</label>
+          </div>
+        </td>
+      </tr>
+
+      
+      <tr>
+        <td class="label">Dátum narodenia</td>
+        <td>
+          <div class="field-wrap">
+            <input type="date" name="datum" >
+          </div>
+        </td>
+
+        <td class="label">Telefón</td>
+        <td>
+          <div class="field-wrap">
+            <input type="text" name="telefon" placeholder="+421 9xx xxx xxx">
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Adresa</td>
+        <td>
+          <div class="field-wrap">
+            <input type="text" name="adresa" placeholder="ulica, mesto, PSČ">
+          </div>
+        </td>
+
+        <td class="label">Vzdelanie</td>
+        <td>
+          <div class="field-wrap">
+            <input type="text" name="vzdelanie" placeholder="Bc, Mgr, ...">
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Pozícia (výber)</td>
+        <td>
+          <div class="field-wrap">
+            <select name="pozicia">
+              <optgroup label="Letové profesie">
+                <option>Pilot</option>
+                <option>Praktický pilot</option>
+                <option>Prípravný pilot</option>
+                <option>Letuška</option>
+              </optgroup>
+              <optgroup label="Podpora letiska">
+                <option>Ochrana letiska</option>
+                <option>Sekretárka</option>
+                <option>Referent</option>
+                <option>Vodič</option>
+                <option>Upratovačka</option>
+              </optgroup>
+              <optgroup label="Manažment / servis">
+                <option>Predavač</option>
+                <option>Vedúci oddelenia</option>
+                <option>Poradca</option>
+              </optgroup>
+            </select>
+          </div>
+        </td>
+
+        <td class="label">Skúsenosti (roky)</td>
+        <td>
+          <div class="field-wrap">
+            <input type="text" name="skusenosti_roky" placeholder="napr. 2 roky">
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Motivačný list / poznámky</td>
+        <td colspan="3">
+          <div class="field-wrap">
+            <textarea name="poznamky" placeholder="Napíš tu krátky motivačný list alebo poznámky..."></textarea>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="label">Prilož CV (pdf)</td>
+        <td>
+          <div class="field-wrap">
+            <input type="file" name="cv" accept=".pdf,.doc,.docx">
+          </div>
+        </td>
+
+        <td class="label">Odkaz na portfólio / web</td>
+        <td>
+          <div class="field-wrap">
+            <input type="text" name="web" placeholder="https://...">
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="4" style="background:#cfcfcf; padding:0;">
+          <div class="buttons">
+            <div class="left" style="text-align:left; padding-left:10px;">
+              <input type="reset" value="Vymazať">
+            </div>
+            <div class="right" style="text-align:right; padding-right:10px;">
+              <input type="submit" value="Odoslať prihlášku">
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+
+  <div class="footer-note">Vladyslav Halanov — MLD 2025/2026, </div>
+</div>
+
+</body>
+</html>
