@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Jednoduché úlohy</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+.box { padding: 15px; border: 1px solid #ccc; margin-top: 20px; }
+</style>
+</head>
+<body>
+<h1>Úlohy k cvičeniu č. 10</h1>
+
+<!-- MENU -->
+<button onclick="show('dph')">Cena s DPH</button>
+<button onclick="show('minimum')">Najmenšie číslo</button>
+<button onclick="show('spotreba')">Spotreba PHM</button>
+<button onclick="show('prevody')">Prevody</button>
+<button onclick="show('kvadraticka')">Kvadratická rovnica</button>
+
+<hr>
+
+
+<div id="dph" class="box" style="display:none;">
+    <h2>Cena s DPH</h2>
+    Počet kusov:<br>
+    <input id="pocet"><br>
+    Cena bez DPH (€):<br>
+    <input id="cena"><br><br>
+    <button onclick="vypocitajDPH()">Vypočítať</button>
+    <p id="vysledok_dph"></p>
+</div>
+
+
+<div id="minimum" class="box" style="display:none;">
+    <h2>Najmenšie číslo</h2>
+    A:<br><input id="a"><br>
+    B:<br><input id="b"><br>
+    C:<br><input id="c"><br><br>
+    <button onclick="najdiMinimum()">Nájsť minimum</button>
+    <p id="vysledok_min"></p>
+</div>
+
+
+<div id="spotreba" class="box" style="display:none;">
+    <h2>Spotreba PHM</h2>
+    Kilometre:<br><input id="km"><br>
+    Litre:<br><input id="litre"><br>
+    Cena (€):<br><input id="cenaPHM"><br><br>
+    <button onclick="spotrebaPHM()">Vypočítať</button>
+    <p id="vysledok_spotreba"></p>
+</div>
+
+
+<div id="prevody" class="box" style="display:none;">
+    <h2>Prevody</h2>
+    Hodnota:<br>
+    <input id="hodnota"><br>
+    Typ prevodu:<br>
+    <select id="typ">
+        <option value="minsek">Min → Sek</option>
+        <option value="sekmin">Sek → Min</option>
+        <option value="skeur">SK → €</option>
+        <option value="eursk">€ → SK</option>
+        <option value="mkm">m → km</option>
+        <option value="kmm">km → m</option>
+    </select><br><br>
+    <button onclick="prevod()">Previesť</button>
+    <p id="vysledok_prevody"></p>
+</div>
+
+
+<div id="kvadraticka" class="box" style="display:none;">
+    <h2>Kvadratická rovnica</h2>
+    a:<br><input id="ka"><br>
+    b:<br><input id="kb"><br>
+    c:<br><input id="kc"><br><br>
+    <button onclick="kvadraticka()">Vyriešiť</button>
+    <p id="vysledok_kv"></p>
+</div>
+
+<script>
+
+function show(id) {
+    document.querySelectorAll('.box').forEach(b => b.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+}
+
+
+function vypocitajDPH() {
+    let p = parseFloat(pocet.value);
+    let c = parseFloat(cena.value);
+    let s = p * c * 1.20;
+    vysledok_dph.innerHTML = "Cena s DPH: <b>" + s.toFixed(2) + " €</b>";
+}
+
+function najdiMinimum() {
+    let arr = [parseFloat(a.value), parseFloat(b.value), parseFloat(c.value)];
+    vysledok_min.innerHTML = "Najmenšie číslo: <b>" + Math.min(...arr) + "</b>";
+}
+
+function spotrebaPHM() {
+    let km = parseFloat(document.getElementById("km").value);
+    let l = parseFloat(litre.value);
+    let cena = parseFloat(cenaPHM.value);
+
+    let spot = (l / km) * 100;
+    let ck = cena / km;
+
+    vysledok_spotreba.innerHTML =
+        "Spotreba na 100 km: <b>" + spot.toFixed(2) + " l</b><br>" +
+        "Cena za 1 km: <b>" + ck.toFixed(2) + " €</b>";
+}
+
+
+function prevod() {
+    let h = parseFloat(hodnota.value);
+    let t = typ.value;
+    let r = "";
+
+    switch (t) {
+        case "minsek": r = (h * 60) + " sek"; break;
+        case "sekmin": r = (h / 60) + " min"; break;
+        case "skeur": r = (h / 30.126).toFixed(2) + " €"; break;
+        case "eursk": r = (h * 30.126).toFixed(2) + " SK"; break;
+        case "mkm": r = (h / 1000) + " km"; break;
+        case "kmm": r = (h * 1000) + " m"; break;
+    }
+    vysledok_prevody.innerHTML = "Výsledok: <b>" + r + "</b>";
+}
+
+
+function kvadraticka() {
+    let a = parseFloat(ka.value);
+    let b = parseFloat(kb.value);
+    let c = parseFloat(kc.value);
+
+    if (a === 0) {
+        vysledok_kv.innerHTML = "Toto nie je kvadratická rovnica.";
+        return;
+    }
+
+    let D = b*b - 4*a*c;
+    let text = "D = <b>" + D + "</b><br><br>";
+
+    if (D < 0) text += "Žiadne reálne riešenie.";
+    else if (D === 0) text += "x = <b>" + (-b / (2*a)) + "</b>";
+    else {
+        let x1 = (-b + Math.sqrt(D)) / (2*a);
+        let x2 = (-b - Math.sqrt(D)) / (2*a);
+        text += "x1 = <b>" + x1 + "</b><br>x2 = <b>" + x2 + "</b>";
+    }
+
+    vysledok_kv.innerHTML = text;
+}
+</script>
+
+</body>
+</html>
